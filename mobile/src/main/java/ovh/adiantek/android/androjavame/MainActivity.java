@@ -1,16 +1,22 @@
 package ovh.adiantek.android.androjavame;
 
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-
+    static Vibrator vibrator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        try {
+            vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+        } catch (Throwable t) {
+
+        }
+        setContentView(new MIDletDisplay(this));
     }
 
     @Override

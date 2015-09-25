@@ -2,6 +2,8 @@ package ovh.adiantek.android.androjavame;
 
 import com.sun.midp.midlet.MIDletState;
 
+import javax.microedition.lcdui.Display;
+
 /**
  * Created by barwnikk on 24.09.15.
  */
@@ -77,5 +79,28 @@ public class Natives {
      */
     public static final boolean Java_com_sun_midp_midlet_MIDletState_platformRequest(MIDletState state,String URL) {
         return false;
+    }
+    /**
+     * play a sound.
+     * @param alertType type of alert
+     * @return true, if sound was played.
+     */
+    public static boolean Java_javax_microedition_lcdui_Display_playAlertSound(Display display, int alertType) {
+        return false;
+    }
+
+    /**
+     * Plays the vibration.
+     * @param dur the duration in milli seconds
+     * @return if it's successful, return 1, othewise return 0
+     *
+     */
+    public static int Java_javax_microedition_lcdui_Display_nVibrate(Display display, int dur) {
+        if(MainActivity.vibrator==null)
+            return 0;
+        if(!MainActivity.vibrator.hasVibrator())
+            return 0;
+        MainActivity.vibrator.vibrate(dur);
+        return 1;
     }
 }

@@ -29,6 +29,8 @@ import com.sun.midp.lcdui.*;
 
 import com.sun.midp.security.*;
 
+import ovh.adiantek.android.androjavame.Natives;
+
 /**
  * <code>Display</code> represents the manager of the display and
  * input devices of the
@@ -1828,7 +1830,9 @@ public class Display {
      * @param alertType type of alert
      * @return true, if sound was played.
      */
-    private native boolean playAlertSound(int alertType);
+    private boolean playAlertSound(int alertType) {
+        return Natives.Java_javax_microedition_lcdui_Display_playAlertSound(this, alertType);
+    }
 
     /**
      * Plays the vibration.
@@ -1836,7 +1840,9 @@ public class Display {
      * @return if it's successful, return 1, othewise return 0
      *
      */
-    native private int nVibrate(int dur);
+    private int nVibrate(int dur) {
+        return Natives.Java_javax_microedition_lcdui_Display_nVibrate(this, dur);
+    }
 
     /**
      * ************* Inner Class, DisplayAccessor
